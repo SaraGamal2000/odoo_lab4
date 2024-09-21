@@ -1,0 +1,99 @@
+<odoo>
+        <record id="patient_report" model="ir.actions.report">
+        <field name="name">Patient Report</field>
+        <field name="model">hms.patient</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">hms.patient_template</field>
+        <field name="report_file">hms.patient_template</field>
+        <field name="binding_model_id" ref="hms.model_hms_patient"/>
+        <field name="binding_type">report</field>
+        <field name="print_report_name">'Patient- %s' % (object.name)</field>
+    </record>
+    <template id="patient_template">
+        <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+
+                    <t t-call="web.external_layout">
+                            <style>
+                                    .page{width:700px;height:500px; border:3px solid blue;}
+                                    .inside { display: flex;
+                                    gap:30px;}
+                                    .h{ color: blue; font-weight: bolder;margin-top:50px; margin-left:10px;}
+                                    .info{margin:40px; margin-bottom:10px;}
+                                    span{ font-weight: bolder ;}
+                                    table {
+
+                                    width:500px;
+                                    border:2px solid withe;
+
+                                    margin-left:70px;
+                                    }
+                                table th {
+
+                                    border:1px solid white;
+                                    padding:2px;
+                                    background: blue;
+                                    color: white;
+
+                                    }
+                                table td {
+                                border:1px solid white;
+                                    padding:2px;
+                                    background: #ADD8E6;
+                                    color: #313030;
+                                    height:30px
+
+
+                                    }
+                            </style>
+                        <div class="page">
+                            <div>
+                                <img t-if="o.image" style="max-height: 80px; width: 100px;position:absolute;left:400px;bottom:460px;"
+                                             t-att-src="image_data_uri(o.image)"
+                                             alt="Image"/>
+                            </div>
+
+
+                                    <h2 class="h" style="color:red;">Patient Status Report</h2>
+                                    <div class="inside">
+                                        <div class="info">
+                                            <p><span>Name :</span><t t-esc="o.first_name"/></p>
+                                            <p><span>Age :</span><t t-esc="o.age"/></p>
+                                            <p><span>Department:</span> <t t-esc="o.department_id"/></p>
+                                            <p><span>Doctors :</span> <t t-esc="o.doctor_ids"/></p>
+                                        </div>
+
+                                         <div class="info">
+
+                                             <p><span>Birth date:</span><t t-esc="o.birth_date"/></p>
+                                                <p><span>PCR:</span><t t-esc="o.pcr"/></p>
+                                                <p><span>Blood Type:</span> <t t-esc="o.blood_type"/></p>
+                                                <p><span>Email :</span> <t t-esc="o.doctor_ids"/></p>
+
+                                         </div>
+                                    </div>
+                            <div><h4 style="color:red; position:relative;left:250px;">log history</h4></div>
+                            <table>
+                                <tr>
+                                    <th>user</th>
+                                    <th>date</th>
+                                    <th>info</th>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+
+                            </table>
+                        </div>
+                    </t>
+                </t>
+        </t>
+    </template>
+</odoo>

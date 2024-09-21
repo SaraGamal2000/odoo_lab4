@@ -1,0 +1,10 @@
+
+<odoo>
+        <record id="hms_manager" model="res.groups">
+            <field name="name">Hms Manager</field>
+        </record>
+
+        <record id="hms_user" model="res.groups">
+            <field name="name">Hms User</field>
+        </record>
+</odoo>
